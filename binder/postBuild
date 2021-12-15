@@ -1,0 +1,7 @@
+#!/bin/bash
+
+pip install .
+pip install git+https://github.com/joouha/euporie
+
+# jupyter server extension enable euporie_binder
+# jupyter serverextension enable euporie_binder

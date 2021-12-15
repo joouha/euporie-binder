@@ -1,0 +1,17 @@
+[build-system]
+requires = ["jupyter_packaging>=0.10,<2", "poetry-core>=1.0.0"]
+build-backend = "jupyter_packaging.build_api"
+
+[tool.isort]
+profile = "black"
+multi_line_output = 3
+
+[tool.jupyter-packaging.options]
+skip-if-exists = ["euporie_binder/static/bundle.js"]
+ensured-targets = ["euporie_binder/static/bundle.js"]
+
+[tool.jupyter-packaging.builder]
+factory = "jupyter_packaging.npm_builder"
+
+[tool.jupyter-packaging.build-args]
+build_cmd = "build"
