@@ -5,8 +5,8 @@ channels:
 
 dependencies:
   - python >=3.10,<4.0.0a0
-  # - euporie
   - pandas
   - matplotlib
   - plotext
   - tqdm
+  # - euporie
