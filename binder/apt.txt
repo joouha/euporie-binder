@@ -1,3 +1,4 @@
-elinks
+w3m
 imagemagick
 catimg
+nano
