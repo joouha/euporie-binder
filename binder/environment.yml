@@ -9,4 +9,6 @@ dependencies:
   - matplotlib
   - plotext
   - tqdm
+  - sympy
+  - antlr4-python3-runtime
   # - euporie
