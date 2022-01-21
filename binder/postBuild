@@ -1,4 +1,5 @@
 #!/bin/bash
 
 pip install .
-pip install git+https://github.com/joouha/euporie
+git clone https://github.com/joouha/euporie.git
+pip install './euporie[all]'
