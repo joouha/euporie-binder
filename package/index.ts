@@ -23,7 +23,7 @@ async function main(): Promise<void> {
     theme: "dark",
     fontFamily:
       '"JetBrains Mono", "Fira Code", "JuliaMono", "Meslo", Menlo, Consolas, "DejaVu Sans Mono", monospace',
-    fontSize: 17,
+    fontSize: 16,
     // lineHeight: 1.0,
     // scrollback: 1000,
     shutdownOnClose: true,

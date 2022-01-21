@@ -53775,7 +53775,7 @@
               theme: "dark",
               fontFamily:
                 '"JetBrains Mono", "Fira Code", "JuliaMono", "Meslo", Menlo, Consolas, "DejaVu Sans Mono", monospace',
-              fontSize: 17,
+              fontSize: 16,
               shutdownOnClose: !0,
               autoFit: !0,
             });
