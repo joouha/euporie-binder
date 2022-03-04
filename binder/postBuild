@@ -5,6 +5,10 @@ mkdir -p ~/.local/bin
 curl https://hpjansson.org/chafa/releases/static/chafa-1.8.0-1-x86_64-linux-gnu.tar.gz | tar -xzvf - chafa-1.8.0-1-x86_64-linux-gnu/chafa-linux-x86_64 -O > ~/.local/bin/chafa
 chmod +x ~/.local/bin/chafa
 
+# Install exa
+curl -L https://github.com/ogham/exa/releases/download/v0.10.1/exa-linux-x86_64-v0.10.1.zip | busybox unzip -p - bin/exa > ~/.local/bin/exa
+chmod +x ~/.local/bin/exa
+
 # Install euporie-binder
 pip install .
 
