@@ -11,7 +11,3 @@ chmod +x ~/.local/bin/exa
 
 # Install euporie-binder
 pip install .
-
-# Install binder
-git clone https://github.com/joouha/euporie.git
-pip install -e './euporie[all]'
