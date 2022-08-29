@@ -9,3 +9,4 @@ dependencies:
   - matplotlib
   - plotext
   - tqdm
+  - rich
