@@ -28,10 +28,32 @@ class Terminal extends JTerminal {
     translator?: ITranslator
   ) {
     super(session, options, translator);
+    const xterm = this["_term"];
+
+    // Add custom CSI-u key-bindings for c-enter, s-enter & c-s-enter
+    xterm.attachCustomKeyEventHandler((e: KeyboardEvent) => {
+      console.log(e);
+
+      if (e.code === "Enter") {
+        if (e.ctrlKey) {
+          if (e.type === "keypress") {
+            this.session.send({ type: "stdin", content: ["\x1b[13;5u"] });
+          }
+          return false;
+        } else if (e.shiftKey) {
+          if (e.type === "keypress") {
+            this.session.send({ type: "stdin", content: ["\x1b[13;2u"] });
+          }
+          return false;
+        }
+      }
+      return true;
+    });
+
     // Load sixel xterm extension
     const customSettings: IImageAddonOptions = { sixelSupport: true };
     const imageAddon = new ImageAddon(WORKER_PATH, customSettings);
-    this["_term"].loadAddon(imageAddon);
+    xterm.loadAddon(imageAddon);
   }
 }
 
@@ -43,13 +65,14 @@ async function main(): Promise<void> {
     fontFamily:
       '"JetBrains Mono", "Fira Code", "JuliaMono", "Meslo", Menlo, Consolas, "DejaVu Sans Mono", monospace',
     fontSize: 16,
+    shutdownOnClose: true,
+    autoFit: true,
+    initialCommand: "euporie-notebook ~/introduction.ipynb",
     // lineHeight: 1.0,
     // scrollback: 1000,
-    shutdownOnClose: true,
     // cursorBlink: true,
     // screenReaderMode: false,
     // pasteWithCtrlV: true,
-    autoFit: true,
     // macOptionIsMeta: false
   });
   term.title.closable = false;
