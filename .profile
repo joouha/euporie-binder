@@ -1,6 +1,6 @@
 export PATH=$HOME/.local/bin/:$PATH
 
-PS1="$ "
+PS1="\e[32m$\e[0m "
 
 # euporie-notebook ~/introduction.ipynb
 
