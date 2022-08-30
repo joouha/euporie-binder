@@ -12,9 +12,28 @@ import "@jupyterlab/terminal/style/index.css";
 import "@jupyterlab/theme-light-extension/style/theme.css";
 import "../package/index.css";
 
-import { Widget } from "@lumino/widgets";
+import { ImageAddon, IImageAddonOptions } from "xterm-addon-image";
+import { ITranslator } from "@jupyterlab/translation";
 import { TerminalManager } from "@jupyterlab/services";
-import { Terminal } from "@jupyterlab/terminal";
+import { Terminal as JTerminal, ITerminal } from "@jupyterlab/terminal";
+import { Terminal as TerminalNS } from "@jupyterlab/services";
+import { Widget } from "@lumino/widgets";
+
+const WORKER_PATH = "static/jupyter_euporie.app/xterm-addon-image-worker.js";
+
+class Terminal extends JTerminal {
+  constructor(
+    session: TerminalNS.ITerminalConnection,
+    options: Partial<ITerminal.IOptions> = {},
+    translator?: ITranslator
+  ) {
+    super(session, options, translator);
+    // Load sixel xterm extension
+    const customSettings: IImageAddonOptions = { sixelSupport: true };
+    const imageAddon = new ImageAddon(WORKER_PATH, customSettings);
+    this["_term"].loadAddon(imageAddon);
+  }
+}
 
 async function main(): Promise<void> {
   const manager = new TerminalManager();

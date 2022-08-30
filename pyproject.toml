@@ -7,8 +7,8 @@ profile = "black"
 multi_line_output = 3
 
 [tool.jupyter-packaging.options]
-skip-if-exists = ["euporie_binder/static/bundle.js"]
-ensured-targets = ["euporie_binder/static/bundle.js"]
+skip-if-exists = ["jupyter_euporie/static/bundle.js"]
+ensured-targets = ["jupyter_euporie/static/bundle.js"]
 
 [tool.jupyter-packaging.builder]
 factory = "jupyter_packaging.npm_builder"

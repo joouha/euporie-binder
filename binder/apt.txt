@@ -1,8 +1,0 @@
-busybox
-w3m
-imagemagick
-catimg
-nano
-libpng16-16
-libjpeg-turbo8
-librsvg2-2

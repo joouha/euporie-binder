@@ -1,7 +1,7 @@
 {
   "ServerApp": {
     "jpserver_extensions": {
-      "euporie_binder": true
+      "jupyter_euporie": true
     }
   }
 }

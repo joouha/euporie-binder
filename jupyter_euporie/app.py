@@ -1,22 +1,20 @@
 # -*- coding: utf-8 -*-
 """An app for running a stand-alone "terminal"."""
+
 import os
 
 import tornado
 from jupyter_server.base.handlers import JupyterHandler
+from jupyter_server.extension.application import ExtensionApp, ExtensionAppJinjaMixin
 from jupyter_server.extension.handler import (
     ExtensionHandlerJinjaMixin,
     ExtensionHandlerMixin,
 )
 from jupyter_server.utils import url_path_join as ujoin
-from jupyterlab.commands import get_app_dir
-from jupyterlab_server import LabServerApp
-from nbclassic.shim import NBClassicConfigShimMixin
 
-from euporie_binder import __version__
+from . import __version__
 
 HERE = os.path.dirname(__file__)
-app_dir = get_app_dir()
 
 
 class Handler(ExtensionHandlerJinjaMixin, ExtensionHandlerMixin, JupyterHandler):
@@ -46,22 +44,12 @@ class Handler(ExtensionHandlerJinjaMixin, ExtensionHandlerMixin, JupyterHandler)
         )
 
 
-class EuporieBinderApp(NBClassicConfigShimMixin, LabServerApp):
+class JupyterEuporieApp(ExtensionAppJinjaMixin, ExtensionApp):
 
     name = __name__
-    app_name = "Euporie Online"
-    description = "A full-screen terminal for demonstrating command line programs"
-    version = __version__
-    app_version = __version__
-    app_url = "euporie_binder.app"
-    extension_url = "/euporie"
     default_url = "/euporie"
     load_other_extensions = False
-    app_dir = app_dir
-    # app_settings_dir = pjoin(app_dir, "settings")
-    # schemas_dir = pjoin(app_dir, "schemas")
-    # themes_dir = pjoin(app_dir, "themes")
-    # user_settings_dir = get_user_settings_dir()
+    file_url_prefix = "/euporie"
 
     def initialize_handlers(self):
         super().initialize_handlers()
@@ -73,3 +61,13 @@ class EuporieBinderApp(NBClassicConfigShimMixin, LabServerApp):
         self.templates_dir = os.path.join(HERE, "templates")
         self.static_paths = [self.static_dir]
         self.template_paths = [self.templates_dir]
+
+
+# -----------------------------------------------------------------------------
+# Main entry point
+# -----------------------------------------------------------------------------
+
+main = launch_new_instance = JupyterEuporieApp.launch_instance
+
+if __name__ == "__main__":
+    main()
