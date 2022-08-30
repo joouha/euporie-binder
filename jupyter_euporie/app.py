@@ -11,6 +11,7 @@ from jupyter_server.extension.handler import (
     ExtensionHandlerMixin,
 )
 from jupyter_server.utils import url_path_join as ujoin
+from notebook_shim.shim import NotebookConfigShimMixin
 
 from . import __version__
 
@@ -44,7 +45,7 @@ class Handler(ExtensionHandlerJinjaMixin, ExtensionHandlerMixin, JupyterHandler)
         )
 
 
-class JupyterEuporieApp(ExtensionAppJinjaMixin, ExtensionApp):
+class JupyterEuporieApp(ExtensionAppJinjaMixin, NotebookConfigShimMixin, ExtensionApp):
 
     name = __name__
     default_url = "/euporie"
