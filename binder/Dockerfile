@@ -13,8 +13,8 @@ RUN apk add sudo py3-pip py3-psutil py3-pandas py3-matplotlib chafa imagemagick 
  && echo '%wheel ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 
 COPY . ${HOME}
-RUN pip install --no-cache-dir -e ${HOME}
-# && ln -s /usr/bin/jupyter-server /usr/bin/jupyter-notebook
+RUN pip install --no-cache-dir -e ${HOME} \
+ && ln -s /usr/bin/jupyter-euporie /usr/bin/jupyter-notebook
 
 USER root
 RUN chown -R ${NB_UID} ${HOME}

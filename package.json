@@ -14,7 +14,10 @@
     "@jupyterlab/theme-light-extension": "^3.2.5",
     "@lumino/widgets": "^1.19.0",
     "es6-promise": "~4.2.8",
-    "xterm-addon-image": "^0.1.0"
+    "xterm-addon-canvas": "^0.12.0",
+    "xterm-addon-image": "^0.1.0",
+    "xterm-addon-web-links": "^0.6.0",
+    "xterm-addon-webgl": "^0.12.0"
   },
   "devDependencies": {
     "copy-webpack-plugin": "^11.0.0",
