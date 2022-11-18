@@ -2,6 +2,8 @@ const webpack = require("webpack");
 const CopyPlugin = require("copy-webpack-plugin");
 
 module.exports = {
+  optimization: { minimize: false },
+
   entry: ["whatwg-fetch", "./build/index.js"],
   output: {
     path: __dirname + "/jupyter_euporie/static",
