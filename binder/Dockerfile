@@ -13,6 +13,8 @@ RUN apk add sudo py3-pip py3-psutil py3-pandas py3-matplotlib chafa imagemagick 
 COPY . ${HOME}
 RUN pip install --no-cache-dir -e ${HOME} \
  && ln -s /usr/bin/jupyter-euporie /usr/bin/jupyter-notebook \
+ && mv /usr/bin/jupyter-server /usr/bin/jupyter-server-original \
+ && ln -s /usr/bin/jupyter-euporie /usr/bin/jupyter-server \
  && chown -R ${NB_UID} ${HOME}
 
 USER ${NB_USER}
