@@ -1,3 +1,6 @@
+# Git repo
+.git/
+
 # JS
 node_modules/
 build/

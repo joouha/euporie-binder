@@ -51,6 +51,7 @@ class JupyterEuporieApp(ExtensionAppJinjaMixin, NotebookConfigShimMixin, Extensi
     default_url = "/euporie"
     load_other_extensions = False
     file_url_prefix = "/euporie"
+    serverapp_config = {"jpserver_extensions": {"jupyter_server_terminals": True}}
 
     def initialize_handlers(self):
         super().initialize_handlers()
