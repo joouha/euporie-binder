@@ -46,12 +46,18 @@ class Handler(ExtensionHandlerJinjaMixin, ExtensionHandlerMixin, JupyterHandler)
 
 
 class JupyterEuporieApp(ExtensionAppJinjaMixin, NotebookConfigShimMixin, ExtensionApp):
-
     name = __name__
     default_url = "/euporie"
     load_other_extensions = False
     file_url_prefix = "/euporie"
     serverapp_config = {"jpserver_extensions": {"jupyter_server_terminals": True}}
+
+    # Depend on terminal server extension
+    serverapp_config = {
+        "jpserver_extensions": {
+            "jupyter_server_terminals": True,
+        }
+    }
 
     def initialize_handlers(self):
         super().initialize_handlers()

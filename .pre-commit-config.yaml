@@ -21,15 +21,3 @@ repos:
               jupyter_euporie/static/bundle\.js|
               jupyter_euporie/static/xterm-addon-image-worker\.js
           )$
-  - repo: https://github.com/PyCQA/isort
-    rev: 5.10.1
-    hooks:
-      - id: isort
-  - repo: https://github.com/psf/black
-    rev: 22.10.0
-    hooks:
-      - id: black
-  - repo: https://github.com/PyCQA/flake8
-    rev: 5.0.4
-    hooks:
-      - id: flake8

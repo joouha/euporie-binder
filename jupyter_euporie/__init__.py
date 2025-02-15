@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """Define a server extension which runs a terminal for running euporie."""
 
-__version__ = "0.1.2"
+__version__ = "0.2.0"
 
 from .app import JupyterEuporieApp
 

@@ -48,14 +48,14 @@ module.exports = {
       // Needed for various packages using cwd(), like the path polyfill
       process: { cwd: () => "/" },
     }),
-    new CopyPlugin({
-      patterns: [
-        {
-          from:
-            "node_modules/xterm-addon-image/lib/xterm-addon-image-worker.js",
-          to: __dirname + "/jupyter_euporie/static/xterm-addon-image-worker.js",
-        },
-      ],
-    }),
+    // new CopyPlugin({
+    //   patterns: [
+    //     {
+    //       from:
+    //         "node_modules/xterm-addon-image/lib/xterm-addon-image-worker.js",
+    //       to: __dirname + "/jupyter_euporie/static/xterm-addon-image-worker.js",
+    //     },
+    //   ],
+    // }),
   ],
 };

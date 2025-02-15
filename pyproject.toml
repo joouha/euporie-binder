@@ -1,17 +1,59 @@
+[project]
+name = "jupyter_euporie"
+dynamic = ["version"]
+description = "Run euporie online using binder"
+readme = "README.rst"
+license = { file = "LICENSE" }
+authors = [
+    { name = "Josiah Outram Halstead" }
+]
+requires-python = ">=3.9"
+keywords = ["Binder", "Jupyter", "JupyterLab", "Euporie"]
+classifiers = [
+    "License :: OSI Approved :: BSD License",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Framework :: Jupyter",
+    "Framework :: Jupyter :: JupyterLab",
+    "Framework :: Jupyter :: JupyterLab :: 3",
+    "Framework :: Jupyter :: JupyterLab :: Extensions",
+    "Framework :: Jupyter :: JupyterLab :: Extensions :: Prebuilt",
+]
+urls = { Homepage = "https://github.com/joouha/euporie-binder" }
+scripts = { jupyter-euporie = "jupyter_euporie.app:main" }
+
+dependencies = [
+    "jupyterlab-server>=2.27.3",
+    "jupyter-server-terminals>=0.4.4",
+    "notebook_shim>=0.2.4",
+    "euporie>=2.8.6",
+]
+
+[dependency-groups]
+dev = [
+    "pre-commit>=4.1.0",
+]
+
 [build-system]
-requires = ["jupyter_packaging>=0.10,<2", "poetry-core>=1.0.0"]
-build-backend = "jupyter_packaging.build_api"
+requires = ["hatchling"]
+build-backend = "hatchling.build"
 
-[tool.isort]
-profile = "black"
-multi_line_output = 3
-
-[tool.jupyter-packaging.options]
-skip-if-exists = ["jupyter_euporie/static/bundle.js"]
+[tool.hatch.build.hooks.jupyter-builder]
+dependencies = ["hatch-jupyter-builder"]
+build-function = "hatch_jupyter_builder.npm_builder"
 ensured-targets = ["jupyter_euporie/static/bundle.js"]
+skip-if-exists = ["jupyter_euporie/static/bundle.js"]
+optional-editable-build = true
 
-[tool.jupyter-packaging.builder]
-factory = "jupyter_packaging.npm_builder"
+[tool.hatch.version]
+path = "jupyter_euporie/__init__.py"
 
-[tool.jupyter-packaging.build-args]
-build_cmd = "build"
+[tool.hatch.build.targets.wheel]
+packages = ["jupyter_euporie"]
+
+[tool.hatch.build.targets.wheel.shared-data]
+"jupyter-config/jupyter_server_config.d" = "etc/jupyter/jupyter_server_config.d"
+"jupyter-config/jupyter_notebook_config.d" = "etc/jupyter/jupyter_notebook_config.d"

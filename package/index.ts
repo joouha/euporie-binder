@@ -22,15 +22,15 @@ import { Message, MessageLoop } from "@lumino/messaging";
 import { Widget } from "@lumino/widgets";
 import { ITerminal } from "@jupyterlab/terminal";
 
-import { Terminal as Xterm, ITheme } from "xterm";
-import { FitAddon } from "xterm-addon-fit";
-import { ImageAddon, IImageAddonOptions } from "xterm-addon-image";
-import { WebLinksAddon } from "xterm-addon-web-links";
-import { CanvasAddon } from "xterm-addon-canvas";
-import { WebglAddon } from "xterm-addon-webgl";
+import { Terminal as Xterm, ITheme } from "@xterm/xterm";
+import { FitAddon } from "@xterm/addon-fit";
+import { ImageAddon, IImageAddonOptions } from "@xterm/addon-image";
+import { WebLinksAddon } from "@xterm/addon-web-links";
+import { CanvasAddon } from "@xterm/addon-canvas";
+import { WebglAddon } from "@xterm/addon-webgl";
 
 // Define xterm-addon-image worker location in the app
-const WORKER_PATH = "static/jupyter_euporie.app/xterm-addon-image-worker.js";
+// const WORKER_PATH = "static/jupyter_euporie.app/xterm-addon-image-worker.js";
 
 // Terminal theme to use
 const default_theme: ITheme = {
@@ -90,7 +90,7 @@ export class Terminal extends Widget implements ITerminal.ITerminal {
 
     // Load addons
     this._term.loadAddon(
-      new ImageAddon(WORKER_PATH, { sixelSupport: true } as IImageAddonOptions)
+      new ImageAddon({ sixelSupport: true } as IImageAddonOptions)
     );
     this._term.loadAddon(new WebLinksAddon());
     this._fitAddon = new FitAddon();
@@ -234,6 +234,21 @@ export class Terminal extends Widget implements ITerminal.ITerminal {
   // Handle `'activate-request'` messages.
   protected onActivateRequest(msg: Message): void {
     this._term.focus();
+  }
+
+  // Get whether there is a selection.
+  hasSelection(): boolean {
+    return this._term.hasSelection();
+  }
+
+  // Get the terminal's selection.
+  getSelection(): string {
+    return this._term.getSelection();
+  }
+
+  // Paste content into the terminal.
+  paste(data: string): void {
+    this._term.paste(data);
   }
 
   // Initialize the terminal object.
